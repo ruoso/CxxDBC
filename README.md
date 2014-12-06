@@ -10,9 +10,13 @@ This project aims to create a general-purpose SQL database abstraction for C++, 
 
 ### Dependencies
 
+*Mandatory*
 * cmake
 * Google Test
 * C++14
+
+*Optional*
+* clang-format
 
 ### To Build
 
@@ -30,4 +34,9 @@ make all test
 ...or...
 ```sh
 make && ./cxxdbc_test
+```
+
+### To Format Code
+```sh
+./bin/format.sh
 ```
