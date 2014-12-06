@@ -33,4 +33,4 @@ include_directories(${GTEST_INCLUDE_DIRS})
 target_link_libraries(cxxdbc_test ${GTEST_BOTH_LIBRARIES} sqlite3)
 
 # Wires up the tests to `make test`
-add_test(AllCxxDBCTests cxxdbc_test)
+add_test(NAME AllCxxDBCTests COMMAND cxxdbc_test)
