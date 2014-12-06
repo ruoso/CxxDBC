@@ -17,6 +17,7 @@ set(CMAKE_CXX_FLAGS_DEBUG "-O0 -gdwarf-4")
 
 # Enumerate the test source files
 set(cxxdbc_test_SOURCES
+  ./test/unit/blob.t.cpp
   ./test/unit/connection.t.cpp
   )
 
