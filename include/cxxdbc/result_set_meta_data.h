@@ -3,6 +3,7 @@
 
 // CxxDBC includes
 #include <cxxdbc/make_unique.h>
+#include <cxxdbc/type.h>
 
 // third party includes
 #include <boost/utility/string_ref.hpp>
@@ -20,6 +21,8 @@ public:  // methods
   virtual size_t getColumnCount() const = 0;
 
   virtual ::boost::string_ref getColumnName(size_t column) const = 0;
+
+  virtual Type getColumnType(size_t column) const = 0;
 };
 
 template <typename Timpl>
@@ -44,6 +47,8 @@ public:  // methods
   ::boost::string_ref getColumnName(size_t column) const override final {
     return m_impl.getColumnName(column);
   }
+
+  Type getColumnType(size_t column) const override final { return m_impl.getColumnType(column); }
 
 public:  // operators
   ResultSetMetaDataImpl<Timpl> &operator=(ResultSetMetaDataImpl<Timpl> const &) = delete;
@@ -72,6 +77,8 @@ public:  // methods
   size_t getColumnCount() const { return m_impl->getColumnCount(); }
 
   ::boost::string_ref getColumnName(size_t column) const { return m_impl->getColumnName(column); }
+
+  Type getColumnType(size_t column) const { return m_impl->getColumnType(column); }
 };
 
 }  // namespace cxxdbc
