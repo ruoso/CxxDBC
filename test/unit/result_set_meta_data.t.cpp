@@ -27,6 +27,8 @@ struct TestMetaData {
     }
     return Type::other;
   }
+
+  bool isNullable(size_t column) const { return (column % 2) == 1; }
 };
 
 ::cxxdbc::ResultSetMetaData getTestMetaData() {
@@ -47,4 +49,7 @@ TEST(ResultSetMetaData, Accessors) {
   EXPECT_EQ(::cxxdbc::Type::array, metaData.getColumnType(0));
   EXPECT_EQ(::cxxdbc::Type::integer, metaData.getColumnType(1));
   EXPECT_EQ(::cxxdbc::Type::other, metaData.getColumnType(123));
+
+  EXPECT_FALSE(metaData.isNullable(0));
+  EXPECT_TRUE(metaData.isNullable(1));
 }

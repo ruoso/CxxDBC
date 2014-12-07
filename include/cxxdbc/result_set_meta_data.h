@@ -23,6 +23,8 @@ public:  // methods
   virtual ::boost::string_ref getColumnName(size_t column) const = 0;
 
   virtual Type getColumnType(size_t column) const = 0;
+
+  virtual bool isNullable(size_t column) const = 0;
 };
 
 template <typename Timpl>
@@ -49,6 +51,8 @@ public:  // methods
   }
 
   Type getColumnType(size_t column) const override final { return m_impl.getColumnType(column); }
+
+  bool isNullable(size_t column) const override final { return m_impl.isNullable(column); }
 
 public:  // operators
   ResultSetMetaDataImpl<Timpl> &operator=(ResultSetMetaDataImpl<Timpl> const &) = delete;
@@ -79,6 +83,8 @@ public:  // methods
   ::boost::string_ref getColumnName(size_t column) const { return m_impl->getColumnName(column); }
 
   Type getColumnType(size_t column) const { return m_impl->getColumnType(column); }
+
+  bool isNullable(size_t column) const { return m_impl->isNullable(column); }
 };
 
 }  // namespace cxxdbc
