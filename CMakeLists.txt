@@ -20,6 +20,7 @@ set(cxxdbc_test_SOURCES
   ./test/unit/blob.t.cpp
   ./test/unit/connection.t.cpp
   ./test/unit/result_set.t.cpp
+  ./test/unit/result_set_meta_data.t.cpp
   ./test/unit/statement.t.cpp
   )
 
