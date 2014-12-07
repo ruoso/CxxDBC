@@ -19,6 +19,7 @@ set(CMAKE_CXX_FLAGS_DEBUG "-O0 -gdwarf-4")
 set(cxxdbc_test_SOURCES
   ./test/unit/blob.t.cpp
   ./test/unit/connection.t.cpp
+  ./test/unit/result_set.t.cpp
   ./test/unit/statement.t.cpp
   )
 
