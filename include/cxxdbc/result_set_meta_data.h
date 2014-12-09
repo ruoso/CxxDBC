@@ -5,6 +5,9 @@
 #include <cxxdbc/make_unique.h>
 #include <cxxdbc/type.h>
 
+// CxxDBC concept includes
+#include <cxxdbc/concept/result_set_meta_data.h>
+
 // third party includes
 #include <boost/utility/string_ref.hpp>
 
@@ -13,56 +16,10 @@
 
 namespace cxxdbc {
 
-class IResultSetMetaDataImpl {
-public:  // RAII
-  virtual ~IResultSetMetaDataImpl() = default;
-
-public:  // methods
-  virtual size_t getColumnCount() const = 0;
-
-  virtual ::boost::string_ref getColumnName(size_t column) const = 0;
-
-  virtual Type getColumnType(size_t column) const = 0;
-
-  virtual bool isNullable(size_t column) const = 0;
-};
-
-template <typename Timpl>
-class ResultSetMetaDataImpl : public IResultSetMetaDataImpl {
-private:  // variables
-  Timpl m_impl;
-
-public:  // RAII
-  ResultSetMetaDataImpl() = default;
-
-  ResultSetMetaDataImpl(ResultSetMetaDataImpl const &) = delete;
-
-  ResultSetMetaDataImpl(ResultSetMetaDataImpl &&) = delete;
-
-  explicit ResultSetMetaDataImpl(Timpl &&impl) : m_impl(::std::forward<Timpl>(impl)) {}
-
-  ~ResultSetMetaDataImpl() = default;
-
-public:  // methods
-  size_t getColumnCount() const override final { return m_impl.getColumnCount(); }
-
-  ::boost::string_ref getColumnName(size_t column) const override final {
-    return m_impl.getColumnName(column);
-  }
-
-  Type getColumnType(size_t column) const override final { return m_impl.getColumnType(column); }
-
-  bool isNullable(size_t column) const override final { return m_impl.isNullable(column); }
-
-public:  // operators
-  ResultSetMetaDataImpl<Timpl> &operator=(ResultSetMetaDataImpl<Timpl> const &) = delete;
-
-  ResultSetMetaDataImpl<Timpl> &operator=(ResultSetMetaDataImpl<Timpl> &&) = delete;
-};
-
+// A handle to metadata about a set of query results
 class ResultSetMetaData {
 private:  // variables
-  ::std::unique_ptr<IResultSetMetaDataImpl> m_impl;
+  ::std::unique_ptr<concept::IResultSetMetaData> m_impl;
 
 public:  // RAII
   ResultSetMetaData() = delete;
@@ -71,9 +28,10 @@ public:  // RAII
 
   ResultSetMetaData(ResultSetMetaData &&) = default;
 
-  template <typename Timpl>
-  explicit ResultSetMetaData(Timpl &&impl)
-      : m_impl(make_unique<ResultSetMetaDataImpl<Timpl>>(::std::forward<Timpl>(impl))) {}
+  template <typename Tconcept>
+  explicit ResultSetMetaData(Tconcept &&concept)
+      : m_impl(make_unique<concept::ResultSetMetaDataWrapper<Tconcept>>(
+            ::std::forward<Tconcept>(concept))) {}
 
   ~ResultSetMetaData() {}
 
