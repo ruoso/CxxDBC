@@ -2,7 +2,7 @@
 #define INCLUDED_CXXDBC_STATEMENT_H
 
 // CxxDBC includes
-#include <cxxdbc/make_unique.h>
+#include <cxxdbc/support/make_unique.h>
 
 // CxxDBC concept includes
 #include <cxxdbc/concept/statement.h>
