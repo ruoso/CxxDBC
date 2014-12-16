@@ -6,25 +6,27 @@
 
 namespace {
 
-class TestStatement {
+  class TestStatement : public ::cxxdbc::IStatement {
 public:  // methods
   bool execute(::boost::string_ref query) { return query == "this query works"; }
   bool isClosed() const { return false; }
   void close() {}
 };
 
-::cxxdbc::Statement makeTestStatement() { return ::cxxdbc::Statement(TestStatement()); }
-
 }  // anonymous namespace
 
 TEST(Statement, Close) {
-  ::cxxdbc::Statement statement = makeTestStatement();
+  TestStatement* ptr = new TestStatement();
+  ::std::unique_ptr<cxxdbc::IStatement> wrapper(ptr);
+  ::cxxdbc::Statement statement(std::move(wrapper));
   ASSERT_FALSE(statement.isClosed());
   statement.close();
 }
 
 TEST(Statement, Execute) {
-  ::cxxdbc::Statement statement = makeTestStatement();
+  TestStatement* ptr = new TestStatement();
+  ::std::unique_ptr<cxxdbc::IStatement> wrapper(ptr);
+  ::cxxdbc::Statement statement(std::move(wrapper));
   ASSERT_TRUE(statement.execute("this query works"));
   ASSERT_FALSE(statement.execute("this query doesn't work"));
 }
