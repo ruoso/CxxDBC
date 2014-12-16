@@ -1,7 +1,8 @@
 #ifndef INCLUDED_CXXDBC_CONCEPT_STATEMENT_H
 #define INCLUDED_CXXDBC_CONCEPT_STATEMENT_H
 
-// CxxDBC top-level includes
+// CxxDBC includes
+#include <cxxdbc/support/make_unique.h>
 #include <cxxdbc/statement.h>
 
 // third-party includes
@@ -44,6 +45,12 @@ public:  // operators
 
   StatementWrapper<Tconcept> &operator=(StatementWrapper<Tconcept> &&) = delete;
 };
+
+template <typename Tconcept>
+static Statement makeStatement(Tconcept && concept) {
+  // ...but use our homebrew make_unique until the standard one is available
+  return Statement(make_unique<StatementWrapper<Tconcept>>(::std::forward<Tconcept>(concept)));
+}
 
 }  // namespace concept
 }  // namespace cxxdbc
