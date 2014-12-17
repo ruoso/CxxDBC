@@ -2,7 +2,7 @@
 #define INCLUDED_CXXDBC_RESULT_SET_META_DATA_H
 
 // CxxDBC includes
-#include <cxxdbc/make_unique.h>
+#include <cxxdbc/support/make_unique.h>
 #include <cxxdbc/type.h>
 
 // CxxDBC concept includes

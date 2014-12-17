@@ -1,12 +1,6 @@
 #ifndef INCLUDED_CXXDBC_STATEMENT_H
 #define INCLUDED_CXXDBC_STATEMENT_H
 
-// CxxDBC includes
-#include <cxxdbc/make_unique.h>
-
-// CxxDBC concept includes
-#include <cxxdbc/concept/statement.h>
-
 // third-party includes
 #include <boost/utility/string_ref.hpp>
 
@@ -15,10 +9,23 @@
 
 namespace cxxdbc {
 
+/// Defines the v-table for dynamic dispatch to a driver implementation of the statement concept.
+class IStatement {
+public:  // RAII
+  virtual ~IStatement() = default;
+
+public:  // methods
+  virtual void close() = 0;
+
+  virtual bool execute(::boost::string_ref query) = 0;
+
+  virtual bool isClosed() const = 0;
+};
+
 /// A handle to a statement
 class Statement {
 private:  // variables
-  ::std::unique_ptr<concept::IStatement> m_statement;
+  ::std::unique_ptr<IStatement> m_statement;
 
 public:  // RAII
   Statement() = delete;
@@ -27,10 +34,8 @@ public:  // RAII
 
   Statement(Statement &&) = default;
 
-  template <typename Tconcept>
-  explicit Statement(Tconcept &&concept)
-      : m_statement(
-            make_unique<concept::StatementWrapper<Tconcept>>(::std::forward<Tconcept>(concept))) {}
+  explicit Statement(::std::unique_ptr<IStatement> &&statement)
+      : m_statement(::std::move(statement)) {}
 
   ~Statement() {}
 

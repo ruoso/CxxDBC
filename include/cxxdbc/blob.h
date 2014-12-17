@@ -6,7 +6,7 @@
 #include <memory>
 
 // CxxDBC includes
-#include <cxxdbc/make_unique.h>
+#include <cxxdbc/support/make_unique.h>
 
 namespace cxxdbc {
 

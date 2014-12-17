@@ -1,24 +1,15 @@
 #ifndef INCLUDED_CXXDBC_CONCEPT_STATEMENT_H
 #define INCLUDED_CXXDBC_CONCEPT_STATEMENT_H
 
+// CxxDBC includes
+#include <cxxdbc/support/make_unique.h>
+#include <cxxdbc/statement.h>
+
 // third-party includes
 #include <boost/utility/string_ref.hpp>
 
 namespace cxxdbc {
 namespace concept {
-
-/// Defines the v-table for dynamic dispatch to a driver implementation of the statement concept.
-class IStatement {
-public:  // RAII
-  virtual ~IStatement() = default;
-
-public:  // methods
-  virtual void close() = 0;
-
-  virtual bool execute(::boost::string_ref query) = 0;
-
-  virtual bool isClosed() const = 0;
-};
 
 /// Wraps a driver implementation of the statement concept (Tconcept) and provides lifecycle
 /// management.
@@ -27,7 +18,7 @@ public:  // methods
 template <typename Tconcept>
 class StatementWrapper : public IStatement {
 private:  // variables
-  Tconcept m_concept;
+  Tconcept &m_concept;
 
 public:  // RAII
   StatementWrapper() = default;
@@ -36,8 +27,7 @@ public:  // RAII
 
   StatementWrapper(StatementWrapper &&) = delete;
 
-  explicit StatementWrapper(Tconcept &&m_concept)
-      : m_concept(::std::forward<Tconcept>(m_concept)) {}
+  explicit StatementWrapper(Tconcept &&concept) : m_concept(::std::forward<Tconcept>(concept)) {}
 
   ~StatementWrapper() = default;
 
@@ -53,6 +43,12 @@ public:  // operators
 
   StatementWrapper<Tconcept> &operator=(StatementWrapper<Tconcept> &&) = delete;
 };
+
+template <typename Tconcept>
+static Statement makeStatement(Tconcept &&concept) {
+  // ...but use our homebrew make_unique until the standard one is available
+  return Statement(make_unique<StatementWrapper<Tconcept>>(::std::forward<Tconcept>(concept)));
+}
 
 }  // namespace concept
 }  // namespace cxxdbc
