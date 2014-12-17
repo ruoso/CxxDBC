@@ -18,7 +18,7 @@ namespace concept {
 template <typename Tconcept>
 class StatementWrapper : public IStatement {
 private:  // variables
-  Tconcept& m_concept;
+  Tconcept &m_concept;
 
 public:  // RAII
   StatementWrapper() = default;
@@ -27,13 +27,11 @@ public:  // RAII
 
   StatementWrapper(StatementWrapper &&) = delete;
 
-  explicit StatementWrapper(Tconcept &&concept)
-      : m_concept(::std::forward<Tconcept>(concept)) {}
+  explicit StatementWrapper(Tconcept &&concept) : m_concept(::std::forward<Tconcept>(concept)) {}
 
   ~StatementWrapper() = default;
 
 public:  // methods
-
   void close() override final { m_concept.close(); }
 
   bool execute(::boost::string_ref query) override final { return m_concept.execute(query); }
@@ -47,7 +45,7 @@ public:  // operators
 };
 
 template <typename Tconcept>
-static Statement makeStatement(Tconcept && concept) {
+static Statement makeStatement(Tconcept &&concept) {
   // ...but use our homebrew make_unique until the standard one is available
   return Statement(make_unique<StatementWrapper<Tconcept>>(::std::forward<Tconcept>(concept)));
 }
