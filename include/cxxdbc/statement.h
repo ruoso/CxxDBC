@@ -34,7 +34,8 @@ public:  // RAII
 
   Statement(Statement &&) = default;
 
-  Statement(::std::unique_ptr<IStatement> statement) : m_statement(::std::move(statement)) {}
+  explicit Statement(::std::unique_ptr<IStatement> &&statement)
+      : m_statement(::std::move(statement)) {}
 
   ~Statement() {}
 
