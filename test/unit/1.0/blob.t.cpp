@@ -1,5 +1,5 @@
 // CxxDBC includes
-#include <cxxdbc/blob.h>
+#include <cxxdbc/1.0/blob.h>
 
 // third party includes
 #include <gtest/gtest.h>
@@ -41,9 +41,9 @@ public:  // operators
   TestBlob &operator=(TestBlob &&) = default;
 };
 
-::cxxdbc::Blob makeTestBlob() { return ::cxxdbc::Blob(TestBlob()); }
+::cxxdbc::v1_0::Blob makeTestBlob() { return ::cxxdbc::v1_0::Blob(TestBlob()); }
 
-::cxxdbc::Blob makeTestBlob(ptrdiff_t n) { return ::cxxdbc::Blob(TestBlob(n)); }
+::cxxdbc::v1_0::Blob makeTestBlob(ptrdiff_t n) { return ::cxxdbc::v1_0::Blob(TestBlob(n)); }
 
 }  // anonymous namespace
 
@@ -55,14 +55,14 @@ TEST(Blob, AccessorsAndMutators) {
   using ::std::generate;
 
   {
-    ::cxxdbc::Blob blob = makeTestBlob();
+    ::cxxdbc::v1_0::Blob blob = makeTestBlob();
     ASSERT_EQ(0, blob.length());
     ASSERT_EQ(0, distance(begin(blob), end(blob)));
     ASSERT_EQ(0, distance(blob.cbegin(), blob.cend()));
   }
 
   {
-    ::cxxdbc::Blob blob = makeTestBlob(26);
+    ::cxxdbc::v1_0::Blob blob = makeTestBlob(26);
     ASSERT_EQ(26, blob.length());
     ASSERT_EQ(26, distance(begin(blob), end(blob)));
     ASSERT_EQ(26, distance(blob.cbegin(), blob.cend()));

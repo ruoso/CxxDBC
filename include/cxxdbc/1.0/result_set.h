@@ -1,11 +1,11 @@
-#ifndef INCLUDED_CXXDBC_RESULT_SET_H
-#define INCLUDED_CXXDBC_RESULT_SET_H
+#ifndef INCLUDED_CXXDBC_1_0_RESULT_SET_H
+#define INCLUDED_CXXDBC_1_0_RESULT_SET_H
 
 // CxxDBC includes
-#include <cxxdbc/support/make_unique.h>
+#include <cxxdbc/1.0/support/make_unique.h>
 
 // CxxDBC concept includes
-#include <cxxdbc/concept/result_set.h>
+#include <cxxdbc/1.0/concept/result_set.h>
 
 // third party includes
 #include <boost/utility/string_ref.hpp>
@@ -14,6 +14,7 @@
 #include <memory>
 
 namespace cxxdbc {
+namespace v1_0 {
 
 // A handle to a set of query results
 class ResultSet {
@@ -48,6 +49,7 @@ public:  // methods
   bool isClosed() const { return m_resultSet->isClosed(); }
 };
 
+}  // namespace v1_0
 }  // namespace cxxdbc
 
-#endif  // INCLUDED_CXXDBC_RESULT_SET_H
+#endif  // INCLUDED_CXXDBC_1_0_RESULT_SET_H

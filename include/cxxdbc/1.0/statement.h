@@ -1,5 +1,5 @@
-#ifndef INCLUDED_CXXDBC_STATEMENT_H
-#define INCLUDED_CXXDBC_STATEMENT_H
+#ifndef INCLUDED_CXXDBC_1_0_STATEMENT_H
+#define INCLUDED_CXXDBC_1_0_STATEMENT_H
 
 // third-party includes
 #include <boost/utility/string_ref.hpp>
@@ -8,6 +8,7 @@
 #include <memory>
 
 namespace cxxdbc {
+namespace v1_0 {
 
 /// Defines the v-table for dynamic dispatch to a driver implementation of the statement concept.
 class IStatement {
@@ -47,6 +48,7 @@ public:  // methods
   bool isClosed() const { return m_statement->isClosed(); }
 };
 
+}  // namespace v1_0
 }  // namespace cxxdbc
 
-#endif  // INCLUDED_CXXDBC_STATEMENT_H
+#endif  // INCLUDED_CXXDBC_1_0_STATEMENT_H

@@ -1,12 +1,12 @@
-#ifndef INCLUDED_CXXDBC_RESULT_SET_META_DATA_H
-#define INCLUDED_CXXDBC_RESULT_SET_META_DATA_H
+#ifndef INCLUDED_CXXDBC_1_0_RESULT_SET_META_DATA_H
+#define INCLUDED_CXXDBC_1_0_RESULT_SET_META_DATA_H
 
 // CxxDBC includes
-#include <cxxdbc/support/make_unique.h>
-#include <cxxdbc/type.h>
+#include <cxxdbc/1.0/support/make_unique.h>
+#include <cxxdbc/1.0/type.h>
 
 // CxxDBC concept includes
-#include <cxxdbc/concept/result_set_meta_data.h>
+#include <cxxdbc/1.0/concept/result_set_meta_data.h>
 
 // third party includes
 #include <boost/utility/string_ref.hpp>
@@ -15,6 +15,7 @@
 #include <memory>
 
 namespace cxxdbc {
+namespace v1_0 {
 
 // A handle to metadata about a set of query results
 class ResultSetMetaData {
@@ -45,6 +46,7 @@ public:  // methods
   bool isNullable(size_t column) const { return m_impl->isNullable(column); }
 };
 
+}  // namespace v1_0
 }  // namespace cxxdbc
 
-#endif  // INCLUDED_CXXDBC_RESULT_SET_META_DATA_H
+#endif  // INCLUDED_CXXDBC_1_0_RESULT_SET_META_DATA_H

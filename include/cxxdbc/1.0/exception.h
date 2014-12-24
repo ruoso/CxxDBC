@@ -1,5 +1,5 @@
-#ifndef INCLUDED_CXXDBC_EXCEPTION_H
-#define INCLUDED_CXXDBC_EXCEPTION_H
+#ifndef INCLUDED_CXXDBC_1_0_EXCEPTION_H
+#define INCLUDED_CXXDBC_1_0_EXCEPTION_H
 
 // third party includes
 #include <boost/utility/string_ref.hpp>
@@ -8,6 +8,7 @@
 #include <exception>
 
 namespace cxxdbc {
+namespace v1_0 {
 
 class Exception : public ::std::exception {
 private:  // variables
@@ -52,6 +53,7 @@ public:  // operators
   }
 };
 
+}  // namespace v1_0
 }  // namespace cxxdbc
 
-#endif  // INCLUDED_CXXDBC_EXCEPTION_H
+#endif  // INCLUDED_CXXDBC_1_0_EXCEPTION_H

@@ -1,14 +1,15 @@
-#ifndef INCLUDED_CXXDBC_BLOB_H
-#define INCLUDED_CXXDBC_BLOB_H
+#ifndef INCLUDED_CXXDBC_1_0_BLOB_H
+#define INCLUDED_CXXDBC_1_0_BLOB_H
 
 // standard includes
 #include <cstddef>
 #include <memory>
 
 // CxxDBC includes
-#include <cxxdbc/support/make_unique.h>
+#include <cxxdbc/1.0/support/make_unique.h>
 
 namespace cxxdbc {
+namespace v1_0 {
 
 class IBlobImpl {
 public:  // RAII
@@ -171,11 +172,12 @@ public:  // methods
   ptrdiff_t length() const { return m_impl->length(); }
 };
 
+}  // namespace v1_0
 }  // namespace cxxdbc
 
 namespace std {
 template <>
-struct iterator_traits<::cxxdbc::Blob::Iterator> {
+struct iterator_traits<::cxxdbc::v1_0::Blob::Iterator> {
   typedef char value_type;
   typedef ptrdiff_t difference_type;
   typedef random_access_iterator_tag iterator_category;
@@ -184,7 +186,7 @@ struct iterator_traits<::cxxdbc::Blob::Iterator> {
 };
 
 template <>
-struct iterator_traits<::cxxdbc::Blob::ConstIterator> {
+struct iterator_traits<::cxxdbc::v1_0::Blob::ConstIterator> {
   typedef char const value_type;
   typedef ptrdiff_t difference_type;
   typedef random_access_iterator_tag iterator_category;
@@ -193,4 +195,4 @@ struct iterator_traits<::cxxdbc::Blob::ConstIterator> {
 };
 }  // namespace std
 
-#endif  // INCLUDED_CXXDBC_BLOB_H
+#endif  // INCLUDED_CXXDBC_1_0_BLOB_H

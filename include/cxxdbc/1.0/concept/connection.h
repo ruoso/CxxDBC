@@ -1,7 +1,8 @@
-#ifndef INCLUDED_CXXDBC_CONCEPT_CONNECTION_H
-#define INCLUDED_CXXDBC_CONCEPT_CONNECTION_H
+#ifndef INCLUDED_CXXDBC_1_0_CONCEPT_CONNECTION_H
+#define INCLUDED_CXXDBC_1_0_CONCEPT_CONNECTION_H
 
 namespace cxxdbc {
+namespace v1_0 {
 namespace concept {
 
 /// Defines the v-table for dynamic dispatch to a driver implementation of the connection concept.
@@ -63,6 +64,7 @@ public:  // operators
 };
 
 }  // namespace concept
+}  // namespace v1_0
 }  // namespace cxxdbc
 
-#endif  // INCLUDED_CXXDBC_CONCEPT_CONNECTION_H
+#endif  // INCLUDED_CXXDBC_1_0_CONCEPT_CONNECTION_H

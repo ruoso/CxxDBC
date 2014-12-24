@@ -1,11 +1,11 @@
 // CxxDBC includes
-#include <cxxdbc/connection.h>
+#include <cxxdbc/1.0/connection.h>
 
 // third party includes
 #include <gtest/gtest.h>
 
 namespace {
-using ::cxxdbc::Connection;
+using ::cxxdbc::v1_0::Connection;
 
 struct TestConnection {
   void clearWarnings() {}
@@ -21,7 +21,7 @@ struct TestConnection {
   void rollback() {}
 };
 
-::cxxdbc::Connection makeTestConnection() { return ::cxxdbc::Connection(TestConnection()); }
+::cxxdbc::v1_0::Connection makeTestConnection() { return ::cxxdbc::v1_0::Connection(TestConnection()); }
 
 }  // anonymous namespace
 

@@ -1,16 +1,17 @@
-#ifndef INCLUDED_CXXDBC_CONNECTION_H
-#define INCLUDED_CXXDBC_CONNECTION_H
+#ifndef INCLUDED_CXXDBC_1_0_CONNECTION_H
+#define INCLUDED_CXXDBC_1_0_CONNECTION_H
 
 // CxxDBC includes
-#include <cxxdbc/support/make_unique.h>
+#include <cxxdbc/1.0/support/make_unique.h>
 
 // CxxDBC concept includes
-#include <cxxdbc/concept/connection.h>
+#include <cxxdbc/1.0/concept/connection.h>
 
 // standard includes
 #include <memory>
 
 namespace cxxdbc {
+namespace v1_0 {
 
 /// A handle to a database connection
 class Connection final {
@@ -50,6 +51,7 @@ public:  // operators
   Connection &operator=(Connection &&) = default;
 };
 
+}  // namespace v1_0
 }  // namespace cxxdbc
 
-#endif  // INCLUDED_CXXDBC_CONNECTION_H
+#endif  // INCLUDED_CXXDBC_1_0_CONNECTION_H

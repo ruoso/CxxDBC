@@ -1,10 +1,11 @@
-#ifndef INCLUDED_CXXDBC_TYPE_H
-#define INCLUDED_CXXDBC_TYPE_H
+#ifndef INCLUDED_CXXDBC_1_0_TYPE_H
+#define INCLUDED_CXXDBC_1_0_TYPE_H
 
 // standard includes
 #include <iostream>
 
 namespace cxxdbc {
+namespace v1_0 {
 
 enum class Type {
   // SQL type ARRAY.
@@ -233,6 +234,7 @@ enum class Type {
   return os;
 }
 
+}  // namespace v1_0
 }  // namespace cxxdbc
 
-#endif  // INCLUDED_CXXDBC_TYPE_H
+#endif  // INCLUDED_CXXDBC_1_0_TYPE_H

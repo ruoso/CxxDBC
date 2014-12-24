@@ -17,12 +17,12 @@ set(CMAKE_CXX_FLAGS_DEBUG "-O0 -gdwarf-4")
 
 # Enumerate the test source files
 set(cxxdbc_test_SOURCES
-  ./test/unit/blob.t.cpp
-  ./test/unit/connection.t.cpp
-  ./test/unit/exception.t.cpp
-  ./test/unit/result_set.t.cpp
-  ./test/unit/result_set_meta_data.t.cpp
-  ./test/unit/statement.t.cpp
+  ./test/unit/1.0/blob.t.cpp
+  ./test/unit/1.0/connection.t.cpp
+  ./test/unit/1.0/exception.t.cpp
+  ./test/unit/1.0/result_set.t.cpp
+  ./test/unit/1.0/result_set_meta_data.t.cpp
+  ./test/unit/1.0/statement.t.cpp
   )
 
 # Adds CxxDBC directories that contain headers to the project
