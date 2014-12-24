@@ -12,6 +12,8 @@ This project aims to create a general-purpose SQL database abstraction for C++, 
 
 In order to separate the concerns of the end user and the driver developer, CxxDBC provides separate interfaces for each to operate through.
 
+See [API-Versioning.md] for details.
+
 #### Client Object Handles
 
 End users of CxxDBC operate through handles like cxxdbc::Connection. It is intended that these classes:
