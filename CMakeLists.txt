@@ -15,8 +15,14 @@ set(CMAKE_CXX_FLAGS_DEBUG "-O0 -gdwarf-4")
 
 # Make sure the comip
 
+# Enumerate the source files
+add_library(cxxdbc
+  ./src/driver_manager.cpp
+  )
+
 # Enumerate the test source files
 set(cxxdbc_test_SOURCES
+  ./test/unit/1.0/driver_manager.t.cpp
   ./test/unit/1.0/blob.t.cpp
   ./test/unit/1.0/connection.t.cpp
   ./test/unit/1.0/exception.t.cpp
@@ -35,7 +41,7 @@ add_executable(cxxdbc_test ${cxxdbc_test_SOURCES})
 enable_testing()
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
-target_link_libraries(cxxdbc_test ${GTEST_BOTH_LIBRARIES} sqlite3)
+target_link_libraries(cxxdbc_test cxxdbc ${GTEST_BOTH_LIBRARIES} sqlite3)
 
 # Wires up the tests to `make test`
 add_test(NAME AllCxxDBCTests COMMAND cxxdbc_test)

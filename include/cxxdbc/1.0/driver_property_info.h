@@ -7,6 +7,7 @@
 namespace cxxdbc {
 namespace v1_0 {
 
+class DriverPropertyInfoImpl;
 class DriverPropertyInfo {
 private:
   DriverPropertyInfoImpl* impl;
@@ -23,10 +24,6 @@ public:
   DriverPropertyInfo(boost::string_ref name,
                      boost::string_ref value,
                      boost::string_ref description,
-                     bool required);
-  DriverPropertyInfo(boost::string_ref name,
-                     boost::string_ref value,
-                     boost::string_ref description,
                      bool required,
                      std::vector<boost::string_ref> choices);
   virtual ~DriverPropertyInfo() = default;
@@ -36,7 +33,7 @@ public:
   boost::string_ref getValue();
   bool isRequired();
   std::vector<boost::string_ref> getChoices();
-}
+};
 
 }  // namespace v1_0
 }  // namespace cxxdbc

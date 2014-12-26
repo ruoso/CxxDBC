@@ -39,52 +39,57 @@ public:  // methods
 /// A handle to a driver
 class Driver {
 private:  // variables
-  ::std::unique_ptr<IDriver> m_driver;
+  // a driver handle can actually be held by several people
+  // at once. So we use shared_ptr instead of unique_ptr.
+  ::std::shared_ptr<IDriver> m_driver;
 
 public:  // RAII
-  Driver() = delete;
+  Driver() = default;
 
-  Driver(Driver const &) = delete;
+  Driver(const Driver &) = default;
 
   Driver(Driver &&) = default;
 
-  explicit Driver(::std::unique_ptr<IDriver> &&driver)
-      : m_driver(::std::move(driver)) {}
+  explicit Driver(::std::shared_ptr<IDriver> &&driver)
+    : m_driver(driver) {}
 
   ~Driver() {}
 
 public:  // methods
   bool acceptsURL(boost::string_ref url) {
-    return m_driver.acceptsURL(url);
+    return m_driver->acceptsURL(url);
   }
   Connection connect(boost::string_ref url,
                      Properties info) {
-    return m_driver.connect(url, info);
+    return m_driver->connect(url, info);
   }
   std::vector<DriverPropertyInfo> getPropertyInfo(boost::string_ref url,
                                                           Properties info) {
-    return m_driver.getPropertyInfo(url, info);
+    return m_driver->getPropertyInfo(url, info);
   }
   // is this a regular SQL driver?
   int isSQL() {
-    return m_driver.isSQL();
+    return m_driver->isSQL();
   }
   // Version of the driver itself
   int getMajorVersion() {
-    return m_driver.getMajorVersion();
+    return m_driver->getMajorVersion();
   }
   int getMinorVersion() {
-    return m_driver.getMinorVersion();
+    return m_driver->getMinorVersion();
   }
   // Version of the CxxDBC API implemented by the driver
   int getSupportedCxxDBCMajorVersion() {
-    return m_driver.getSupportedCxxDBCMajorVersion();
+    return m_driver->getSupportedCxxDBCMajorVersion();
   }
   int getSupportedCxxDBCMinorVersion() {
-    return m_driver.getSupportedCxxDBCMinorVersion();
+    return m_driver->getSupportedCxxDBCMinorVersion();
   }
-
 };
+
+bool operator==(Driver& a, Driver& b) {
+  *(a.m_driver) == *(b.m_driver);
+}
 
 }  // namespace v1_0
 }  // namespace cxxdbc
