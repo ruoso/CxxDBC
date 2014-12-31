@@ -21,7 +21,9 @@ struct TestConnection {
   void rollback() {}
 };
 
-::cxxdbc::v1_0::Connection makeTestConnection() { return ::cxxdbc::v1_0::Connection(TestConnection()); }
+::cxxdbc::v1_0::Connection makeTestConnection() {
+  return ::cxxdbc::v1_0::Connection(TestConnection());
+}
 
 }  // anonymous namespace
 

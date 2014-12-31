@@ -6,7 +6,7 @@
 
 #include <cxxdbc/1.0/exception.h>
 namespace cxxdbc {
-  using cxxdbc::v1_0::Exception;
+using cxxdbc::v1_0::Exception;
 }
 
 #endif

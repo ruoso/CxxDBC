@@ -6,8 +6,8 @@
 
 #include <cxxdbc/1.0/result_set_meta_data.h>
 namespace cxxdbc {
-  using cxxdbc::v1_0::IResultSetMetaDataImpl;
-  using cxxdbc::v1_0::ResultSetMetaData;
+using cxxdbc::v1_0::IResultSetMetaDataImpl;
+using cxxdbc::v1_0::ResultSetMetaData;
 }
 
 #endif

@@ -6,8 +6,8 @@
 
 #include <cxxdbc/1.0/statement.h>
 namespace cxxdbc {
-  using cxxdbc::v1_0::IStatementImpl;
-  using cxxdbc::v1_0::Statement;
+using cxxdbc::v1_0::IStatementImpl;
+using cxxdbc::v1_0::Statement;
 }
 
 #endif

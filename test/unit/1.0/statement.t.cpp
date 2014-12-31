@@ -51,8 +51,7 @@ TEST(StatementWrapper, Close) {
 
 TEST(StatementWrapper, Execute) {
   TestStatementWrapped realdriver;
-  ::cxxdbc::v1_0::Statement statement = ::cxxdbc::v1_0::
-concept::makeStatement(realdriver);
+  ::cxxdbc::v1_0::Statement statement = ::cxxdbc::v1_0::concept::makeStatement(realdriver);
   ASSERT_TRUE(statement.execute("this query works"));
   ASSERT_FALSE(statement.execute("this query doesn't work"));
 }

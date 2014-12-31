@@ -6,8 +6,8 @@
 
 #include <cxxdbc/1.0/blob.h>
 namespace cxxdbc {
-  using cxxdbc::v1_0::IBlobImpl;
-  using cxxdbc::v1_0::Blob;
+using cxxdbc::v1_0::IBlobImpl;
+using cxxdbc::v1_0::Blob;
 }
 
 #endif

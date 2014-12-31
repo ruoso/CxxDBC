@@ -6,7 +6,7 @@
 
 #include <cxxdbc/1.0/type.h>
 namespace cxxdbc {
-  using cxxdbc::v1_0::Type;
+using cxxdbc::v1_0::Type;
 }
 
 #endif

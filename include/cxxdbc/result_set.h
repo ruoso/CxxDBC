@@ -6,8 +6,8 @@
 
 #include <cxxdbc/1.0/result_set.h>
 namespace cxxdbc {
-  using cxxdbc::v1_0::IResultSetImpl;
-  using cxxdbc::v1_0::ResultSet;
+using cxxdbc::v1_0::IResultSetImpl;
+using cxxdbc::v1_0::ResultSet;
 }
 
 #endif

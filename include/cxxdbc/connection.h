@@ -6,8 +6,8 @@
 
 #include <cxxdbc/1.0/connection.h>
 namespace cxxdbc {
-  using cxxdbc::v1_0::IConnectionImpl;
-  using cxxdbc::v1_0::Connection;
+using cxxdbc::v1_0::IConnectionImpl;
+using cxxdbc::v1_0::Connection;
 }
 
 #endif
