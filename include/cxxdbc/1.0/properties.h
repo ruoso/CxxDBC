@@ -13,7 +13,7 @@
 namespace cxxdbc {
 namespace v1_0 {
 
-typedef std::unordered_map<boost::string_ref,boost::string_ref> Properties;
+typedef std::unordered_map<boost::string_ref, boost::string_ref> Properties;
 
 }  // namespace v1_0
 }  // namespace cxxdbc

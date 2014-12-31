@@ -11,21 +11,15 @@ class DriverPropertyInfoImpl;
 class DriverPropertyInfo {
 private:
   DriverPropertyInfoImpl* impl;
+
 public:
-  DriverPropertyInfo(boost::string_ref name,
-                     boost::string_ref value);
-  DriverPropertyInfo(boost::string_ref name,
-                     boost::string_ref value,
+  DriverPropertyInfo(boost::string_ref name, boost::string_ref value);
+  DriverPropertyInfo(boost::string_ref name, boost::string_ref value,
                      boost::string_ref description);
-  DriverPropertyInfo(boost::string_ref name,
-                     boost::string_ref value,
-                     boost::string_ref description,
+  DriverPropertyInfo(boost::string_ref name, boost::string_ref value, boost::string_ref description,
                      bool required);
-  DriverPropertyInfo(boost::string_ref name,
-                     boost::string_ref value,
-                     boost::string_ref description,
-                     bool required,
-                     std::vector<boost::string_ref> choices);
+  DriverPropertyInfo(boost::string_ref name, boost::string_ref value, boost::string_ref description,
+                     bool required, std::vector<boost::string_ref> choices);
   virtual ~DriverPropertyInfo() = default;
 
   boost::string_ref getName();
