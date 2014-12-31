@@ -1,5 +1,5 @@
 // CxxDBC includes
-#include <cxxdbc/result_set.h>
+#include <cxxdbc/1.0/result_set.h>
 
 // third party includes
 #include <gtest/gtest.h>
@@ -22,19 +22,19 @@ public:  // methods
   bool isClosed() const { return m_isClosed; }
 };
 
-::cxxdbc::ResultSet makeTestResultSet() { return ::cxxdbc::ResultSet(TestResultSet()); }
+::cxxdbc::v1_0::ResultSet makeTestResultSet() { return ::cxxdbc::v1_0::ResultSet(TestResultSet()); }
 
 }  // anonymous namespace
 
 TEST(ResultSet, Close) {
-  ::cxxdbc::ResultSet resultSet = makeTestResultSet();
+  ::cxxdbc::v1_0::ResultSet resultSet = makeTestResultSet();
   ASSERT_FALSE(resultSet.isClosed());
   resultSet.close();
   ASSERT_TRUE(resultSet.isClosed());
 }
 
 TEST(ResultSet, Get) {
-  ::cxxdbc::ResultSet resultSet = makeTestResultSet();
+  ::cxxdbc::v1_0::ResultSet resultSet = makeTestResultSet();
   EXPECT_EQ(0, resultSet.getInt(0));
   EXPECT_EQ(999, resultSet.getInt(999));
   EXPECT_EQ(1, resultSet.getInt("a"));

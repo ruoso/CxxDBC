@@ -1,14 +1,15 @@
-#ifndef INCLUDED_CXXDBC_CONCEPT_STATEMENT_H
-#define INCLUDED_CXXDBC_CONCEPT_STATEMENT_H
+#ifndef INCLUDED_CXXDBC_1_0_CONCEPT_STATEMENT_H
+#define INCLUDED_CXXDBC_1_0_CONCEPT_STATEMENT_H
 
 // CxxDBC includes
-#include <cxxdbc/support/make_unique.h>
-#include <cxxdbc/statement.h>
+#include <cxxdbc/1.0/support/make_unique.h>
+#include <cxxdbc/1.0/statement.h>
 
 // third-party includes
 #include <boost/utility/string_ref.hpp>
 
 namespace cxxdbc {
+namespace v1_0 {
 namespace concept {
 
 /// Wraps a driver implementation of the statement concept (Tconcept) and provides lifecycle
@@ -51,6 +52,7 @@ static Statement makeStatement(Tconcept &&concept) {
 }
 
 }  // namespace concept
+}  // namespace v1_0
 }  // namespace cxxdbc
 
-#endif  // INCLUDED_CXXDBC_CONCEPT_STATEMENT_H
+#endif  // INCLUDED_CXXDBC_1_0_CONCEPT_STATEMENT_H

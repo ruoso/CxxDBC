@@ -1,10 +1,11 @@
-#ifndef INCLUDED_CXXDBC_CONCEPT_RESULT_SET_META_DATA_H
-#define INCLUDED_CXXDBC_CONCEPT_RESULT_SET_META_DATA_H
+#ifndef INCLUDED_CXXDBC_1_0_CONCEPT_RESULT_SET_META_DATA_H
+#define INCLUDED_CXXDBC_1_0_CONCEPT_RESULT_SET_META_DATA_H
 
 // third party includes
 #include <boost/utility/string_ref.hpp>
 
 namespace cxxdbc {
+namespace v1_0 {
 namespace concept {
 
 /// Defines the v-table for dynamic dispatch to a driver implementation of the result set meta data
@@ -63,6 +64,7 @@ public:  // operators
 };
 
 }  // namespace concept
+}  // namespace v1_0
 }  // namespace cxxdbc
 
-#endif  // INCLUDED_CXXDBC_CONCEPT_RESULT_SET_META_DATA_H
+#endif  // INCLUDED_CXXDBC_1_0_CONCEPT_RESULT_SET_META_DATA_H

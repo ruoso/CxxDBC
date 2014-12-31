@@ -1,5 +1,5 @@
 // CxxDBC includes
-#include <cxxdbc/result_set_meta_data.h>
+#include <cxxdbc/1.0/result_set_meta_data.h>
 
 // third party includes
 #include <gtest/gtest.h>
@@ -19,8 +19,8 @@ struct TestMetaData {
     return "other";
   }
 
-  ::cxxdbc::Type getColumnType(size_t column) const {
-    using ::cxxdbc::Type;
+  ::cxxdbc::v1_0::Type getColumnType(size_t column) const {
+    using ::cxxdbc::v1_0::Type;
     switch (column) {
       case 0: { return Type::array; }
       case 1: { return Type::integer; }
@@ -31,14 +31,14 @@ struct TestMetaData {
   bool isNullable(size_t column) const { return (column % 2) == 1; }
 };
 
-::cxxdbc::ResultSetMetaData getTestMetaData() {
-  return ::cxxdbc::ResultSetMetaData(TestMetaData());
+::cxxdbc::v1_0::ResultSetMetaData getTestMetaData() {
+  return ::cxxdbc::v1_0::ResultSetMetaData(TestMetaData());
 }
 
 }  // anonymous namespace
 
 TEST(ResultSetMetaData, Accessors) {
-  ::cxxdbc::ResultSetMetaData metaData = getTestMetaData();
+  ::cxxdbc::v1_0::ResultSetMetaData metaData = getTestMetaData();
 
   ASSERT_EQ(77, metaData.getColumnCount());
 
@@ -46,9 +46,9 @@ TEST(ResultSetMetaData, Accessors) {
   EXPECT_EQ("one", metaData.getColumnName(1));
   EXPECT_EQ("other", metaData.getColumnName(99));
 
-  EXPECT_EQ(::cxxdbc::Type::array, metaData.getColumnType(0));
-  EXPECT_EQ(::cxxdbc::Type::integer, metaData.getColumnType(1));
-  EXPECT_EQ(::cxxdbc::Type::other, metaData.getColumnType(123));
+  EXPECT_EQ(::cxxdbc::v1_0::Type::array, metaData.getColumnType(0));
+  EXPECT_EQ(::cxxdbc::v1_0::Type::integer, metaData.getColumnType(1));
+  EXPECT_EQ(::cxxdbc::v1_0::Type::other, metaData.getColumnType(123));
 
   EXPECT_FALSE(metaData.isNullable(0));
   EXPECT_TRUE(metaData.isNullable(1));
