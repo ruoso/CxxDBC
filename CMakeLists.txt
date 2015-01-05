@@ -20,6 +20,11 @@ add_library(cxxdbc
   ./src/driver_manager.cpp
   )
 
+# A nulldriver for testing the library
+add_library(cxxdbc-nulldriver
+  ./test/nulldriver/null_driver.cpp
+  )
+
 # Enumerate the test source files
 set(cxxdbc_test_SOURCES
   ./test/unit/1.0/driver_manager.t.cpp
@@ -42,7 +47,7 @@ add_executable(cxxdbc_test ${cxxdbc_test_SOURCES})
 enable_testing()
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
-target_link_libraries(cxxdbc_test cxxdbc ${GTEST_BOTH_LIBRARIES} sqlite3)
+target_link_libraries(cxxdbc_test cxxdbc cxxdbc-nulldriver ${GTEST_BOTH_LIBRARIES} sqlite3)
 
 # Wires up the tests to `make test`
 add_test(NAME AllCxxDBCTests COMMAND cxxdbc_test)
