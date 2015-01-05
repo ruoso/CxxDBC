@@ -23,6 +23,7 @@ add_library(cxxdbc
 # Enumerate the test source files
 set(cxxdbc_test_SOURCES
   ./test/unit/1.0/driver_manager.t.cpp
+  ./test/unit/1.0/driver.t.cpp
   ./test/unit/1.0/blob.t.cpp
   ./test/unit/1.0/connection.t.cpp
   ./test/unit/1.0/exception.t.cpp
