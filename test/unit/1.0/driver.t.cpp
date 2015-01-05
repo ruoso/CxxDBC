@@ -90,3 +90,13 @@ TEST(Driver, isSQL) {
   ASSERT_TRUE(driver.isSQL());
 }
 
+TEST(Driver, connect) {
+  ::cxxdbc::v1_0::Driver driver = TestDriverImpl::makeTestDriver();
+  ::cxxdbc::v1_0::Connection c = driver.connect("foo", {});
+  ASSERT_TRUE(c.isReadOnly());
+}
+
+TEST(Driver, temporary) {
+  ::cxxdbc::v1_0::Driver driver = TestDriverImpl::makeTestDriver();
+  ASSERT_TRUE(driver.connect("foo", {}).isReadOnly());
+}
