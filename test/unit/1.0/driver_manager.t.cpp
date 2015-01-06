@@ -1,6 +1,7 @@
 // CxxDBC includes
 #include <cxxdbc/1.0/driver.h>
 #include <cxxdbc/1.0/driver_manager.h>
+#include <cxxdbc/1.0/exception.h>
 
 // test includes
 #include <../test/nulldriver/null_driver.h>
@@ -39,4 +40,7 @@ TEST(DriverManager, connect) {
   cxxdbc::v1_0::Connection c =
     cxxdbc::v1_0::DriverManager::getConnection("null:connection");
   EXPECT_TRUE(c.isReadOnly()); // null driver is always read only.
+  EXPECT_THROW(cxxdbc::v1_0::DriverManager::getConnection("non-existant"),
+               cxxdbc::v1_0::Exception);
 }
+
