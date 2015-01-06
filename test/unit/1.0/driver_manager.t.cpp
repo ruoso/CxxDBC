@@ -32,3 +32,11 @@ TEST(DriverManager, DISABLED_deregisterDriver) {
   EXPECT_TRUE(cxxdbc::v1_0::DriverManager::deregisterDriver(d1));
   EXPECT_TRUE(cxxdbc::v1_0::DriverManager::getDrivers().size() == i);
 }
+
+TEST(DriverManager, connect) {
+  cxxdbc::v1_0::Driver d1 = cxxdbc::nulldriver::NullDriver::makeDriver();
+  cxxdbc::v1_0::DriverManager::registerDriver(d1);
+  cxxdbc::v1_0::Connection c =
+    cxxdbc::v1_0::DriverManager::getConnection("null:connection");
+  EXPECT_TRUE(c.isReadOnly()); // null driver is always read only.
+}

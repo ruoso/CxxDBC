@@ -1,5 +1,6 @@
 // matching include
 #include <cxxdbc/1.0/driver_manager.h>
+#include <cxxdbc/1.0/exception.h>
 
 // standard includes
 #include <algorithm>
@@ -32,8 +33,14 @@ int DriverManager::deregisterDriver(Driver const& driver) {
 }
 
 Connection DriverManager::getConnection(boost::string_ref url) {
-  (void)url;  // not used yet
-  abort();
+  for(std::vector<Driver>::iterator it = s_registeredDrivers.begin();
+      it != s_registeredDrivers.end();
+      ++it) {
+    if (it->acceptsURL(url)) {
+      return it->connect(url, {});
+    }
+  }
+  throw Exception("No driver accepts the given url");
 }
 
 Connection DriverManager::getConnection(boost::string_ref url, Properties properties) {
